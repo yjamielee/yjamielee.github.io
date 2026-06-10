@@ -88,15 +88,15 @@
 }
 
 /* 제목/태그라인: 보임 보장 + 스타일 */
-#sidebar .site-title,
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-title,
+#sidebar .sidebar-site-subtitle {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
   text-align: center;
 }
 
-#sidebar .site-title {
+#sidebar .sidebar-site-title {
   font-size: 1.35rem;
   font-weight: 800;
   margin-top: .4rem;
@@ -104,7 +104,7 @@
   color: var(--text-color, #1f2937);
 }
 
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-subtitle {
   font-size: .98rem;
   font-style: normal;      /* fst-italic 영향 방지 */
   margin-top: .25rem;
@@ -113,8 +113,8 @@
 
 /* 다크 모드 가독성 */
 @media (prefers-color-scheme: dark) {
-  #sidebar .site-title { color: #e5eef9; }
-  #sidebar .site-subtitle { color: #9fb0c4; }
+  #sidebar .sidebar-site-title { color: #e5eef9; }
+  #sidebar .sidebar-site-subtitle { color: #9fb0c4; }
 }
 
 /* 공통: 앵커 점프 보정 + 스무스 스크롤 */
