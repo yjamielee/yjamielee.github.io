@@ -1,8 +1,8 @@
 ---
-# the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
+title: About
+icon: fas fa-user
+order: 2
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+<meta http-equiv="refresh" content="0; url={{ '/' | relative_url }}#about">
+If you are not redirected, <a href="{{ '/' | relative_url }}#about">click here</a>.

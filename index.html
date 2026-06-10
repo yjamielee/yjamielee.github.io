@@ -1,4 +1,40 @@
 ---
-layout: home
-# Index page
+layout: page
+title:
+permalink: /
 ---
+
+<style>html{scroll-behavior:smooth}</style>
+
+<hr>
+<section id="about-title">
+  {% include about.html %}
+</section>
+
+<hr>
+<section id="id="edu-title">
+{% include education.html %}
+<hr>
+
+<section id="experience">
+  {% include experience.html %}
+</section>
+<hr>
+
+<h2 id="projects">Projects</h2>
+<ul>
+  <li><strong>AI-CDSS Clinical Implementation &amp; Evidence Building (AITRICS)</strong> — Guideline/metric evaluation in R; clinical impact analyses; cross-site coordination.</li>
+  <li><strong>SaMD Post-Approval Studies</strong> — Prospective/retrospective designs; sample-size (R); SQL pipeline; grant accepted.</li>
+  <li><strong>HIV mHealth &amp; Psychometrics</strong> — Korean validation (SPSS/AMOS); e-health literacy &amp; self-management models (R).</li>
+</ul>
+
+<hr>
+<section id="id="pubs-title">
+  {% include publications.html %}
+</section>
+<hr>
+
+<section id="id="honors-title">
+  {% include honors.html %}
+</section>
+<hr>

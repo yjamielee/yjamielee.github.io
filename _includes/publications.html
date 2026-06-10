@@ -1,0 +1,33 @@
+<div class="pubs">
+  <h2 id="pubs-title" class="pubs-title"><i class="fas fa-book-open"></i> Publications</h2>
+
+  <div class="pubs-body">
+    {% assign pubs = site.data.publications | sort: "year" | reverse %}
+    {% for p in pubs %}
+      <article class="pub-card">
+        <div class="pub-meta">
+          <span class="pub-venue">[{{ p.venue }}]</span>
+          <span class="pub-year">[{{ p.year }}]</span>
+        </div>
+
+        <h3 class="pub-title">
+          {% if p.url %}
+            <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a>
+          {% else %}
+            {{ p.title }}
+          {% endif %}
+        </h3>
+
+        <p class="pub-authors">{{ p.authors | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</p>
+
+        {% if p.doi %}
+          <div class="pub-doi">
+            <a href="https://doi.org/{{ p.doi | remove: 'https://doi.org/' }}" target="_blank" rel="noopener">
+              doi: {{ p.doi | remove: 'https://doi.org/' }}
+            </a>
+          </div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</div>

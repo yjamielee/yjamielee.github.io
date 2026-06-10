@@ -1,0 +1,21 @@
+<div id="about" class="about section-card">
+  <h2 id="about-title" class="section-title about-title">
+    <!-- 흑백 아이콘: 사이트에서 이미 쓰는 Font Awesome 사용 -->
+    <i class="fas fa-user"></i>
+    About Me
+  </h2>
+
+  <div class="about-body">
+    {%- assign about_items = site.data.about | default: site.data.about_me | default: site.data.aboutme -%}
+    {%- for a in about_items -%}
+      <article class="about-card">
+        {%- if a.title and a.title != "About Me" -%}
+          <h3 class="about-hidden">{{ a.title }}</h3>
+        {%- endif -%}
+        <div class="about-detail">
+          {{ a.detail | markdownify }}
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</div>

@@ -5,18 +5,40 @@ layout: compress
 <!doctype html>
 
 {% include origin-type.html %}
-
 {% include lang.html %}
 
 {% if site.theme_mode %}
   {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
 {% endif %}
 
-<!-- `site.alt_lang` can specify a language different from the UI -->
 <html lang="{{ page.lang | default: site.alt_lang | default: site.lang }}" {{ prefer_mode }}>
   {% include head.html %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // summary 클릭 시, 안에 있는 버튼을 눌러도 섹션 접히지 않게 방지
+  document.querySelectorAll('.xp-sec__head .xp-bulk-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(e){ e.stopPropagation(); });
+  });
 
-  <body>
+  // Show all / Hide all 토글
+  document.querySelectorAll('.xp-bulk-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var scopeId = btn.getAttribute('data-scope');
+      var sec = document.getElementById(scopeId);
+      if(!sec) return;
+
+      var collapsed = sec.getAttribute('data-collapsed') === 'true';
+      // 접힘(true) -> 펼침(false)
+      sec.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+      btn.textContent = collapsed ? 'Hide all' : 'Expand';
+      // 섹션 자체는 항상 open 상태 유지
+      sec.setAttribute('open', 'open');
+    });
+  });
+});
+</script>
+
+   <body style="--sidebar-w: 400px;">
     {% include sidebar.html lang=lang %}
 
     <div id="main-wrapper" class="d-flex justify-content-center">
@@ -24,7 +46,8 @@ layout: compress
         {% include topbar.html lang=lang %}
 
         <div class="row flex-grow-1">
-          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+          <!-- 메인 칼럼: 패널 제거에 맞춰 풀폭으로 -->
+          <main aria-label="Main Content" class="col-12 px-md-4">
             {% if layout.refactor or layout.layout == 'default' %}
               {% include refactor-content.html content=content lang=lang %}
             {% else %}
@@ -32,7 +55,8 @@ layout: compress
             {% endif %}
           </main>
 
-          <!-- panel -->
+          {%- comment -%}
+          <!-- panel (우측 패널 완전 비활성화) -->
           <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
             <div class="access">
               {% include_cached update-list.html lang=lang %}
@@ -44,11 +68,12 @@ layout: compress
               {% include {{ _include_path }} lang=lang %}
             {% endfor %}
           </aside>
+          {%- endcomment -%}
         </div>
 
         <div class="row">
-          <!-- tail -->
-          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+          <!-- tail: 메인 폭에 맞춰 풀폭으로 -->
+          <div id="tail-wrapper" class="col-12 px-md-4">
             {% for _include in layout.tail_includes %}
               {% assign _include_path = _include | append: '.html' %}
               {% include {{ _include_path }} lang=lang %}
@@ -75,7 +100,6 @@ layout: compress
     {% endif %}
 
     <!-- Embedded scripts -->
-
     {% for _include in layout.script_includes %}
       {% assign _include_path = _include | append: '.html' %}
       {% include {{ _include_path }} %}

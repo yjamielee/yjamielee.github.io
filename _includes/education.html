@@ -1,0 +1,26 @@
+<div class="edu">
+  <h2 id="education" class="edu-title">
+    <i class="fas fa-graduation-cap"></i> Education
+  </h2>
+
+  <div class="edu-body">
+    {% assign schools = site.data.education | sort: "year_key" | reverse %}
+    {% for s in schools %}
+      <article class="edu-card">
+        <div class="edu-meta">
+          <span class="edu-heading">
+            <span class="edu-degree"><strong>{{ s.title }}</strong></span>
+            {% if s.affiliation %}
+              <div class="edu-affiliation">{{ s.affiliation }}</div>
+            {% endif %}
+          </span>
+          <span class="edu-year">[{{ s.year }}]</span>
+        </div>
+
+        {% if s.detail and s.detail != "" %}
+          <p class="edu-detail">{{ s.detail }}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</div>

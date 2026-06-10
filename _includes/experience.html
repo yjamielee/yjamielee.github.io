@@ -1,0 +1,171 @@
+<div id="experience" class="xp section-card">
+  <h2 id="experience-title" class="section-title">
+    <i class="fas fa-briefcase"></i> Experience
+  </h2>
+
+  {% assign all = site.data.experience | sort: "year_key" | reverse %}
+  {%- assign academic = all | where: "category", "academic" -%}
+  {%- assign industry = all | where: "category", "industry" -%}
+
+  <!-- ===== Academic Experience ===== -->
+{% assign academic_sorted = academic | sort: "year_key" | reverse %}
+{% assign groups = academic_sorted | group_by_exp: "x", "x.affiliation" %}
+
+<details class="xp-sec" id="experience-academic" open data-collapsed="true">
+  <summary class="xp-sec__head">
+    <span class="xp-sec__title">Academic Experience</span>
+    <button type="button"
+            class="xp-toggle-all"
+            data-scope="#experience-academic"
+            aria-expanded="false">
+      Exapand
+    </button>
+  </summary>
+
+  <div class="xp-list">
+    {% for g in groups %}
+      <article class="xp-card">
+        <div class="xp-row">
+          <div class="xp-title">{{ g.name }}</div>
+        </div>
+
+        {% for x in g.items %}
+          <div class="xp-row">
+            <div class="xp-subtitle">{{ x.title }}</div>
+            <span class="xp-dates">[{{ x.year }}]</span>
+          </div>
+
+          <div class="xp-collapsible" data-collapsed="true">
+            {% if x.detail %}
+              <ul class="xp-detail">
+                {% for d in x.detail %}<li>{{ d }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+            {% if x.location %}
+              <div class="xp-loc">{{ x.location }}</div>
+            {% endif %}
+          </div>
+
+          {% unless forloop.last %}
+            <hr class="xp-sep">
+          {% endunless %}
+        {% endfor %}
+      </article>
+    {% endfor %}
+  </div>
+</details>
+
+ <!-- ===== Industry Experience ===== -->
+{% assign industry_sorted = industry | sort: "year_key" | reverse %}
+{% assign groups = industry_sorted | group_by_exp: "x", "x.affiliation" %}
+
+<details class="xp-sec" id="experience-industry" open data-collapsed="true">
+  <summary class="xp-sec__head">
+    <span class="xp-sec__title">Industry Experience</span>
+    <button type="button"
+            class="xp-toggle-all"
+            data-scope="#experience-industry"
+            aria-expanded="false">
+      Exapand
+    </button>
+  </summary>
+
+  <div class="xp-list">
+    {% for g in groups %}
+      <article class="xp-card">
+        <div class="xp-row">
+          <div class="xp-title">{{ g.name }}</div>
+        </div>
+
+        {% for x in g.items %}
+          <div class="xp-row">
+            <div class="xp-subtitle">{{ x.title }}</div>
+            <span class="xp-dates">[{{ x.year }}]</span>
+          </div>
+
+          <div class="xp-collapsible" data-collapsed="true">
+            {% if x.detail %}
+              <ul class="xp-detail">
+                {% for d in x.detail %}<li>{{ d }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+            {% if x.location %}
+              <div class="xp-loc">{{ x.location }}</div>
+            {% endif %}
+          </div>
+
+          {% unless forloop.last %}
+            <hr class="xp-sep">
+          {% endunless %}
+        {% endfor %}
+      </article>
+    {% endfor %}
+  </div>
+</details>
+
+<script>
+(function(){
+  // summary 기본 토글 막기(버튼 클릭 시 details가 같이 열리고 닫히는 것 방지)
+  function stopSummaryToggle(e){ e.preventDefault(); e.stopPropagation(); }
+
+  // 펼치기: height 0 -> px -> (전환 끝나면) auto
+  function openWrap(el){
+    if (el.classList.contains('is-open')) return;
+    el.classList.add('is-open');
+    el.style.height = 'auto';
+    const end = el.scrollHeight;
+    el.style.height = '0px';
+    requestAnimationFrame(() => { el.style.height = end + 'px'; });
+    function onEnd(e){
+      if (e.propertyName === 'height'){
+        el.style.height = 'auto';
+        el.removeEventListener('transitionend', onEnd);
+      }
+    }
+    el.addEventListener('transitionend', onEnd);
+  }
+
+  // 접기: height auto(px 고정) -> 0
+  function closeWrap(el){
+    if (!el.classList.contains('is-open')) return;
+    el.style.height = el.scrollHeight + 'px';
+    requestAnimationFrame(() => { el.style.height = '0px'; });
+    function onEnd(e){
+      if (e.propertyName === 'height'){
+        el.classList.remove('is-open');
+        el.removeEventListener('transitionend', onEnd);
+      }
+    }
+    el.addEventListener('transitionend', onEnd);
+  }
+
+  // 섹션 단위 토글
+  document.querySelectorAll('.xp-toggle-all').forEach(function(btn){
+    // 버튼이 summary 안에 있으므로 기본 토글 차단
+    btn.addEventListener('click', stopSummaryToggle);
+    btn.addEventListener('mousedown', stopSummaryToggle);
+    btn.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') stopSummaryToggle(e);
+    });
+
+    btn.addEventListener('click', function(){
+      const scopeSel = btn.getAttribute('data-scope'); // 예: "#experience-academic"
+      const sec = document.querySelector(scopeSel);
+      const wraps = sec.querySelectorAll('.xp-collapsible');
+      const collapsed = sec.getAttribute('data-collapsed') === 'true';
+
+      if (collapsed){
+        wraps.forEach(openWrap);
+        sec.setAttribute('data-collapsed','false');
+        btn.setAttribute('aria-expanded','true');
+        btn.textContent = 'Hide';
+      }else{
+        wraps.forEach(closeWrap);
+        sec.setAttribute('data-collapsed','true');
+        btn.setAttribute('aria-expanded','false');
+        btn.textContent = 'Show all';
+      }
+    });
+  });
+})();
+</script>

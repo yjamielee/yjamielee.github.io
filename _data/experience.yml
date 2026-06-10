@@ -1,0 +1,76 @@
+# _data/experience.yml
+
+#- category: academic
+  #year: Jan 2026 –
+  #year_key: 2026
+  #title: Research Trainee
+  #affiliation: MD Anderson Cancer Center
+  #detail:
+  #  - PI: Josiah K. Halm, M.D., M.S., FACP, FHM, CMQ, Joanna-Grace M Manzano, MD, MPH, FACP & Adwait Mehta, MD
+  #location: "@Houston, TX"
+
+- category: academic
+  year: Oct 2025 –
+  year_key: 2025
+  title: Graduate Research Assistant
+  affiliation: UTHealth San Antonio
+  detail:
+    - "PI: Laura Aubree Shay, PhD & Susanne Schmidt, PhD"
+    - Support program evaluation and continuous quality improvement efforts for the IIMS/CTSA through data management, analysis, and reporting.
+    - Develop, distribute, and manage evaluation surveys and datasets in REDCap, Excel, and SAS.
+    - Conduct data analysis and synthesize findings to inform manuscripts, project reports, and implementation strategies.
+  location: "@Houston, TX (Remote)"
+
+- category: industry
+  year: Mar 2023 – Jul 2023
+  year_key: 2023
+  title: Clinical Research Manager
+  affiliation: AITRICS
+  detail:
+    - Led clinical project management for AI-CDSS and hospital implementations
+    - Evaluated clinical guidelines and EHR-based projects in R; coordinated multi-site stakeholders
+    - Designed multicenter studies & multivariable analyses to assess model accuracy and clinical impact
+    - Contributed to AI algorithms for early detection/monitoring of acute disease
+  location: "@Seoul, Korea"
+
+- category: industry
+  year: Sep 2022 – Mar 2023
+  year_key: 2022
+  title: Medical Writer
+  affiliation: AITRICS
+  detail:
+    - Wrote SaMD post-approval study protocols (prospective & retrospective)
+    - Performed sample-size calculations in R; built SQL-based data pipeline
+    - Authored KMEDI-Hub grant proposal (~$150,000) for digital healthcare program
+  location: "@Seoul, Korea"
+
+- category: academic
+  year: Sep 2020 – Aug 2022
+  year_key: 2020
+  title: Graduate Research Assistant
+  affiliation: Yonsei University, College of Nursing
+  detail:
+    - Psychometric validation of Korean HIV self-efficacy (SPSS/AMOS)
+    - mHealth intervention research; scoping/integrative reviews; qual/quant analyses
+    - Grant on e-Health literacy & HIV self-management; multivariate analysis in R
+  location: "@Seoul, Korea"
+
+- category: academic
+  year: Apr 2020 – Jul 2020
+  year_key: 2020
+  title: Teaching Assistant
+  affiliation: Yonsei University, College of Nursing
+  detail:
+    - Supported family/women’s health courses; graded & facilitated discussions
+    - Organized junior/senior practicums; instructed clinical skills; supported case conferences
+  location: "@Seoul, Korea"
+
+- category: industry
+  year: Mar 2018 – Mar 2020
+  year_key: 2018
+  title: Registered Nurse (OR)
+  affiliation: Severance Hospital, Yonsei University Health System
+  detail:
+    - Perioperative nursing; patient safety & best practices
+    - Participated in neurosurgery pressure-injury prevention QI under JCI standards
+  location: "@Seoul, Korea"

@@ -1,0 +1,18 @@
+# _data/education.yml
+- year: Aug 2024 –
+  year_key: 2024
+  title: "M.S. Student in Biostatistics and Data Science"
+  affiliation: "University of Texas Health Science Center at Houston"
+  detail: "Minor: Epidemiology"
+
+- year: Sep 2020 – Aug 2022
+  year_key: 2022
+  title: "M.S. in Nursing"
+  affiliation: "Yonsei University"
+  detail: "Advisor: Dr. Gwangsuk Kim"
+
+- year: Mar 2014 – Feb 2018
+  year_key: 2018
+  title: "B.S. in Nursing"
+  affiliation: "Yonsei University"
+  detail: ""

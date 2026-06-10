@@ -5,6 +5,18 @@
     id="topbar"
     class="d-flex align-items-center justify-content-between px-lg-3 h-100"
   >
+
+    <nav id="topbar-menu">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}#about">About</a></li>
+        <li><a href="{{ '/' | relative_url }}#education">Education</a></li>
+        <li><a href="{{ '/' | relative_url }}#experience">Experience</a></li>
+        <li><a href="{{ '/' | relative_url }}#projects">Projects</a></li>
+        <li><a href="{{ '/' | relative_url }}#pubs-title">Publications</a></li>
+        <li><a href="{{ '/' | relative_url }}#honors-title">Honors</a></li>
+      </ul>
+    </nav>
+
     <nav id="breadcrumb" aria-label="Breadcrumb">
       {% assign paths = page.url | split: '/' %}
 
@@ -55,6 +67,7 @@
       {% endif %}
     </div>
 
+{% comment %}
     <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
       <i class="fas fa-search fa-fw"></i>
     </button>
@@ -73,5 +86,8 @@
     <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">
       {{- site.data.locales[include.lang].search.cancel -}}
     </button>
+  {% endcomment %}
   </div>
+
+
 </header>
