@@ -6,35 +6,50 @@ permalink: /
 
 <style>html{scroll-behavior:smooth}</style>
 
+<section id="intro" class="intro section-card">
+  <h1 class="intro-title">Youngjin (Jamie) Lee</h1>
+  <p class="intro-summary">
+    Clinical and data science background focused on evidence generation, healthcare data analytics, and clinical research across life sciences and healthcare technology.
+  </p>
+  <div class="intro-links">
+    <a href="{{ '/profile/' | relative_url }}">CV</a>
+    <a href="https://www.linkedin.com/in/youngjinlee03" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/yjamielee" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:{{ site.social.email }}">Email</a>
+    <a href="{{ '/' | relative_url }}#publications">Publications</a>
+  </div>
+</section>
+
 <hr>
-<section id="about-title">
+<section>
   {% include about.html %}
 </section>
 
 <hr>
-<section id="id="edu-title">
-{% include education.html %}
+<section>
+  {% include education.html %}
+</section>
+
 <hr>
 
-<section id="experience">
+<section>
   {% include experience.html %}
 </section>
-<hr>
-
-<h2 id="projects">Projects</h2>
-<ul>
-  <li><strong>AI-CDSS Clinical Implementation &amp; Evidence Building (AITRICS)</strong> — Guideline/metric evaluation in R; clinical impact analyses; cross-site coordination.</li>
-  <li><strong>SaMD Post-Approval Studies</strong> — Prospective/retrospective designs; sample-size (R); SQL pipeline; grant accepted.</li>
-  <li><strong>HIV mHealth &amp; Psychometrics</strong> — Korean validation (SPSS/AMOS); e-health literacy &amp; self-management models (R).</li>
-</ul>
 
 <hr>
-<section id="id="pubs-title">
+
+<section id="projects">
+  <h2>Projects</h2>
+  <ul>
+    <li><strong>AI-CDSS Clinical Implementation &amp; Evidence Building (AITRICS)</strong> — Guideline/metric evaluation in R; clinical impact analyses; cross-site coordination.</li>
+    <li><strong>SaMD Post-Approval Studies</strong> — Prospective/retrospective designs; sample-size (R); SQL pipeline; grant accepted.</li>
+    <li><strong>HIV mHealth &amp; Psychometrics</strong> — Korean validation (SPSS/AMOS); e-health literacy &amp; self-management models (R).</li>
+  </ul>
+</section>
+
+<hr>
+<section id="publications">
   {% include publications.html %}
 </section>
-<hr>
 
-<section id="id="honors-title">
-  {% include honors.html %}
-</section>
 <hr>

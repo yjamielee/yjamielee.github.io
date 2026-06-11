@@ -1,59 +1,9 @@
-<div class="xp-section">
-  <h3 class="xp-header">Academic Experience</h3>
-  {%- assign g = site.data.experience.academic -%}
-  {%- assign items = g.positions -%}
-  {%- assign latest = items[0] -%}
-  {%- assign oldest = items | last -%}
-  <div class="xp-row">
-    <h4 class="xp-title">{{ g.name }}</h4>
-  </div>
+- type: github
+  icon: "fab fa-github"
 
-  {% for x in items %}
-    <div class="xp-row">
-      <div class="xp-subtitle">{{ x.title }}</div>
-      <span class="xp-dates">[{{ x.year }}]</span>
-    </div>
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/youngjinlee03"
 
-    {% if x.detail %}
-      <ul class="xp-detail">
-        {% for d in x.detail %}<li>{{ d }}</li>{% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if x.location %}<div class="xp-loc">{{ x.location }}</div>{% endif %}
-
-    {% unless forloop.last %}
-      <hr class="xp-sep">
-    {% endunless %}
-  {% endfor %}
-</div>
-
-<div class="xp-section">
-  <h3 class="xp-header">Industry Experience</h3>
-  {%- assign g = site.data.experience.industry -%}
-  {%- assign items = g.positions -%}
-  {%- assign latest = items[0] -%}
-  {%- assign oldest = items | last -%}
-  <div class="xp-row">
-    <h4 class="xp-title">{{ g.name }}</h4>
-  </div>
-
-  {% for x in items %}
-    <div class="xp-row">
-      <div class="xp-subtitle">{{ x.title }}</div>
-      <span class="xp-dates">[{{ x.year }}]</span>
-    </div>
-
-    {% if x.detail %}
-      <ul class="xp-detail">
-        {% for d in x.detail %}<li>{{ d }}</li>{% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if x.location %}<div class="xp-loc">{{ x.location }}</div>{% endif %}
-
-    {% unless forloop.last %}
-      <hr class="xp-sep">
-    {% endunless %}
-  {% endfor %}
-</div>
+- type: email
+  icon: "fas fa-envelope"

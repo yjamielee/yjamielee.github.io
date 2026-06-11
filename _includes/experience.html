@@ -1,6 +1,12 @@
 <div id="experience" class="xp section-card">
   <h2 id="experience-title" class="section-title">
-    <i class="fas fa-briefcase"></i> Experience
+    <span><i class="fas fa-briefcase"></i> Experience</span>
+    <button type="button"
+            id="experience-toggle-all"
+            class="xp-toggle-all"
+            aria-expanded="false">
+      Expand
+    </button>
   </h2>
 
   {% assign all = site.data.experience | sort: "year_key" | reverse %}
@@ -14,12 +20,6 @@
 <details class="xp-sec" id="experience-academic" open data-collapsed="true">
   <summary class="xp-sec__head">
     <span class="xp-sec__title">Academic Experience</span>
-    <button type="button"
-            class="xp-toggle-all"
-            data-scope="#experience-academic"
-            aria-expanded="false">
-      Exapand
-    </button>
   </summary>
 
   <div class="xp-list">
@@ -62,12 +62,6 @@
 <details class="xp-sec" id="experience-industry" open data-collapsed="true">
   <summary class="xp-sec__head">
     <span class="xp-sec__title">Industry Experience</span>
-    <button type="button"
-            class="xp-toggle-all"
-            data-scope="#experience-industry"
-            aria-expanded="false">
-      Exapand
-    </button>
   </summary>
 
   <div class="xp-list">
@@ -105,9 +99,6 @@
 
 <script>
 (function(){
-  // summary 기본 토글 막기(버튼 클릭 시 details가 같이 열리고 닫히는 것 방지)
-  function stopSummaryToggle(e){ e.preventDefault(); e.stopPropagation(); }
-
   // 펼치기: height 0 -> px -> (전환 끝나면) auto
   function openWrap(el){
     if (el.classList.contains('is-open')) return;
@@ -139,33 +130,26 @@
     el.addEventListener('transitionend', onEnd);
   }
 
-  // 섹션 단위 토글
-  document.querySelectorAll('.xp-toggle-all').forEach(function(btn){
-    // 버튼이 summary 안에 있으므로 기본 토글 차단
-    btn.addEventListener('click', stopSummaryToggle);
-    btn.addEventListener('mousedown', stopSummaryToggle);
-    btn.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' || e.key === ' ') stopSummaryToggle(e);
-    });
+  const btn = document.getElementById('experience-toggle-all');
+  if (!btn) return;
 
-    btn.addEventListener('click', function(){
-      const scopeSel = btn.getAttribute('data-scope'); // 예: "#experience-academic"
-      const sec = document.querySelector(scopeSel);
-      const wraps = sec.querySelectorAll('.xp-collapsible');
-      const collapsed = sec.getAttribute('data-collapsed') === 'true';
+  btn.addEventListener('click', function(){
+    const xp = document.getElementById('experience');
+    const sections = xp.querySelectorAll('.xp-sec');
+    const wraps = xp.querySelectorAll('.xp-collapsible');
+    const collapsed = btn.getAttribute('aria-expanded') !== 'true';
 
-      if (collapsed){
-        wraps.forEach(openWrap);
-        sec.setAttribute('data-collapsed','false');
-        btn.setAttribute('aria-expanded','true');
-        btn.textContent = 'Hide';
-      }else{
-        wraps.forEach(closeWrap);
-        sec.setAttribute('data-collapsed','true');
-        btn.setAttribute('aria-expanded','false');
-        btn.textContent = 'Show all';
-      }
-    });
+    if (collapsed){
+      sections.forEach(function(sec){ sec.setAttribute('data-collapsed','false'); });
+      wraps.forEach(openWrap);
+      btn.setAttribute('aria-expanded','true');
+      btn.textContent = 'Collapse';
+    }else{
+      wraps.forEach(closeWrap);
+      sections.forEach(function(sec){ sec.setAttribute('data-collapsed','true'); });
+      btn.setAttribute('aria-expanded','false');
+      btn.textContent = 'Expand';
+    }
   });
 })();
 </script>

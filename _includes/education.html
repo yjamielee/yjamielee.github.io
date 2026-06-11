@@ -20,6 +20,14 @@
         {% if s.detail and s.detail != "" %}
           <p class="edu-detail">{{ s.detail }}</p>
         {% endif %}
+
+        {% if s.awards %}
+          <ul class="edu-awards">
+            {% for award in s.awards %}
+              <li>{{ award }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </article>
     {% endfor %}
   </div>
