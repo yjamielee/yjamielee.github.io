@@ -2,14 +2,18 @@
 - year: Aug 2024 –
   year_key: 2024
   title: "M.S. Student in Biostatistics and Data Science"
-  affiliation: "University of Texas Health Science Center at Houston"
-  detail: "Minor: Epidemiology"
+  affiliation: "UTHealth Houston"
+  awards:
+    - "Outstanding New Student Scholarship, Merit-based, Fall 2024"
 
 - year: Sep 2020 – Aug 2022
   year_key: 2022
   title: "M.S. in Nursing"
   affiliation: "Yonsei University"
   detail: "Advisor: Dr. Gwangsuk Kim"
+  awards:
+    - "BK21-L.E.A.P Global Nurse Scientist Program Student Fund, 2020–2022"
+    - "Academic Research Fellowship, 2021"
 
 - year: Mar 2014 – Feb 2018
   year_key: 2018

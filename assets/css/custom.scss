@@ -88,15 +88,15 @@
 }
 
 /* 제목/태그라인: 보임 보장 + 스타일 */
-#sidebar .site-title,
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-title,
+#sidebar .sidebar-site-subtitle {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
   text-align: center;
 }
 
-#sidebar .site-title {
+#sidebar .sidebar-site-title {
   font-size: 1.35rem;
   font-weight: 800;
   margin-top: .4rem;
@@ -104,7 +104,7 @@
   color: var(--text-color, #1f2937);
 }
 
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-subtitle {
   font-size: .98rem;
   font-style: normal;      /* fst-italic 영향 방지 */
   margin-top: .25rem;
@@ -113,12 +113,12 @@
 
 /* 다크 모드 가독성 */
 @media (prefers-color-scheme: dark) {
-  #sidebar .site-title { color: #e5eef9; }
-  #sidebar .site-subtitle { color: #9fb0c4; }
+  #sidebar .sidebar-site-title { color: #e5eef9; }
+  #sidebar .sidebar-site-subtitle { color: #9fb0c4; }
 }
 
 /* 공통: 앵커 점프 보정 + 스무스 스크롤 */
-#about-title, #education-title, #experience-title, #pubs-title, #honors-title { scroll-margin-top: 90px; }
+#intro, #about, #education, #experience-title, #projects, #publications, #pubs-title { scroll-margin-top: 90px; }
 html { scroll-behavior: smooth; }
 
 /* === Section Wrappers === */
@@ -136,6 +136,30 @@ html { scroll-behavior: smooth; }
   font-size: 1.25rem;
   font-weight: 800;
   margin: 2px 2px 12px;
+}
+
+/* ===== Intro ===== */
+.intro{
+  margin-top: 0;
+}
+
+.intro-title{
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 2px 2px 8px;
+}
+
+.intro-summary{
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0 2px 12px;
+}
+
+.intro-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  font-weight: 700;
 }
 
 /* ===== About ===== */
@@ -246,12 +270,15 @@ html { scroll-behavior: smooth; }
 }
 
 .edu-detail{ margin:0; font-size:.95rem; color:#444; }
+.edu-awards{ margin:8px 0 0 1.1rem; font-size:.95rem; color:#444; }
+.edu-awards li{ margin:2px 0; }
 
 /* 다크모드 (Education) */
 @media (prefers-color-scheme: dark){
   .edu{ background:#0f1720; border-color:#223142; }
   .edu-card{ background:#111b26; border-color:#223142; }
   .edu-affiliation{ color:#55c1ff; }
+  .edu-awards{ color:#d6e0ea; }
 }
 
 /* ===== Experience ===== */
@@ -435,80 +462,6 @@ html { scroll-behavior: smooth; }
   .pub-card { background: #111b26; border-color: #223142; }
 }
 
-/* ===== Honors ===== */
-
-/* 섹션 컨테이너 */
-.honors {
-  background: var(--card-bg, #f4f7fb);
-  border: 1px solid var(--border-color, #d8dee6);
-  border-radius: 16px;
-  padding: 14px;
-  margin-top: 2rem;
-}
-
-/* 섹션 타이틀 */
-.honors-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin: 2px 2px 12px;
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-}
-
-/* 리스트 래퍼 */
-.honors-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* 카드 */
-.honor-card {
-  background: #fff;
-  border: 1px solid var(--border-color, #d8dee6);
-  border-radius: 14px;
-  padding: 14px 16px;
-  box-shadow: 0 1px 0 rgba(0,0,0,.06);
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.honor-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.18);
-  background: #fff;
-}
-
-/* 메타/제목/연도 */
-.honor-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.honor-title {
-  font-size: 1.06rem;    /* 통일: 기준 */
-  font-weight: 800;
-}
-.honor-year {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--text-muted-color, #a8abb1);
-}
-
-/* 상세 */
-.honor-detail {
-  margin: 0;
-  font-size: .95rem;
-  color: #444;
-  line-height: 1.4;
-}
-
-/* 다크모드 (Honors) */
-@media (prefers-color-scheme: dark) {
-  .honors { background: #0f1720; border-color: #223142; }
-  .honor-card { background: #111b26; border-color: #223142; }
-}
-
 @media (min-width: 992px) {
   :root { --sidebar-w: 340px; } /* ← 원하는 폭으로 조절 (320~360 추천) */
 
@@ -602,8 +555,8 @@ html { scroll-behavior: smooth; }
 }
 
 /* 4) 사이트 이름 & 한줄 소개 ‘무조건’ 보이도록 + 가운데 정렬 */
-#sidebar .site-title,
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-title,
+#sidebar .sidebar-site-subtitle {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -611,7 +564,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* 5) 글자 크기/색(테마 변수 사용, 혹시 투명/겹침 이슈 대비) */
-#sidebar .site-title {
+#sidebar .sidebar-site-title {
   font-size: 1.6rem !important;   /* 필요시 조절 */
   font-weight: 900 !important;
   color: var(--site-title-color) !important;
@@ -620,7 +573,7 @@ html { scroll-behavior: smooth; }
   line-height: 1.2 !important;
 }
 
-#sidebar .site-subtitle {
+#sidebar .sidebar-site-subtitle {
   font-size: .98rem !important;
   font-style: normal !important;
   color: var(--site-subtitle-color) !important;
